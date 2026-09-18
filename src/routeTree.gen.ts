@@ -21,6 +21,9 @@ import { Route as GiftIndexRouteImport } from './routes/gift.index'
 import { Route as GiftProfileRouteImport } from './routes/gift.profile'
 import { Route as GiftSearchRouteImport } from './routes/gift.search'
 import { Route as PersonaSlugRouteImport } from './routes/persona.$slug'
+import { Route as VendorIndexRouteImport } from './routes/vendor.index'
+import { Route as VendorNoticingRouteImport } from './routes/vendor.noticing'
+import { Route as VendorPhotosRouteImport } from './routes/vendor.photos'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -82,6 +85,21 @@ const PersonaSlugRoute = PersonaSlugRouteImport.update({
   path: '/persona/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VendorIndexRoute = VendorIndexRouteImport.update({
+  id: '/vendor/',
+  path: '/vendor/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VendorNoticingRoute = VendorNoticingRouteImport.update({
+  id: '/vendor/noticing',
+  path: '/vendor/noticing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VendorPhotosRoute = VendorPhotosRouteImport.update({
+  id: '/vendor/photos',
+  path: '/vendor/photos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -95,7 +113,10 @@ export interface FileRoutesByFullPath {
   '/gift/profile': typeof GiftProfileRoute
   '/gift/search': typeof GiftSearchRoute
   '/persona/$slug': typeof PersonaSlugRoute
+  '/vendor/noticing': typeof VendorNoticingRoute
+  '/vendor/photos': typeof VendorPhotosRoute
   '/gift/': typeof GiftIndexRoute
+  '/vendor/': typeof VendorIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -109,7 +130,10 @@ export interface FileRoutesByTo {
   '/gift/profile': typeof GiftProfileRoute
   '/gift/search': typeof GiftSearchRoute
   '/persona/$slug': typeof PersonaSlugRoute
+  '/vendor/noticing': typeof VendorNoticingRoute
+  '/vendor/photos': typeof VendorPhotosRoute
   '/gift': typeof GiftIndexRoute
+  '/vendor': typeof VendorIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -124,7 +148,10 @@ export interface FileRoutesById {
   '/gift/profile': typeof GiftProfileRoute
   '/gift/search': typeof GiftSearchRoute
   '/persona/$slug': typeof PersonaSlugRoute
+  '/vendor/noticing': typeof VendorNoticingRoute
+  '/vendor/photos': typeof VendorPhotosRoute
   '/gift/': typeof GiftIndexRoute
+  '/vendor/': typeof VendorIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -140,7 +167,10 @@ export interface FileRouteTypes {
     | '/gift/profile'
     | '/gift/search'
     | '/persona/$slug'
+    | '/vendor/noticing'
+    | '/vendor/photos'
     | '/gift/'
+    | '/vendor/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -154,7 +184,10 @@ export interface FileRouteTypes {
     | '/gift/profile'
     | '/gift/search'
     | '/persona/$slug'
+    | '/vendor/noticing'
+    | '/vendor/photos'
     | '/gift'
+    | '/vendor'
   id:
     | '__root__'
     | '/'
@@ -168,7 +201,10 @@ export interface FileRouteTypes {
     | '/gift/profile'
     | '/gift/search'
     | '/persona/$slug'
+    | '/vendor/noticing'
+    | '/vendor/photos'
     | '/gift/'
+    | '/vendor/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -183,7 +219,10 @@ export interface RootRouteChildren {
   GiftProfileRoute: typeof GiftProfileRoute
   GiftSearchRoute: typeof GiftSearchRoute
   PersonaSlugRoute: typeof PersonaSlugRoute
+  VendorNoticingRoute: typeof VendorNoticingRoute
+  VendorPhotosRoute: typeof VendorPhotosRoute
   GiftIndexRoute: typeof GiftIndexRoute
+  VendorIndexRoute: typeof VendorIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -272,6 +311,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PersonaSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/vendor/': {
+      id: '/vendor/'
+      path: '/vendor'
+      fullPath: '/vendor/'
+      preLoaderRoute: typeof VendorIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vendor/noticing': {
+      id: '/vendor/noticing'
+      path: '/vendor/noticing'
+      fullPath: '/vendor/noticing'
+      preLoaderRoute: typeof VendorNoticingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vendor/photos': {
+      id: '/vendor/photos'
+      path: '/vendor/photos'
+      fullPath: '/vendor/photos'
+      preLoaderRoute: typeof VendorPhotosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -287,7 +347,10 @@ const rootRouteChildren: RootRouteChildren = {
   GiftProfileRoute: GiftProfileRoute,
   GiftSearchRoute: GiftSearchRoute,
   PersonaSlugRoute: PersonaSlugRoute,
+  VendorNoticingRoute: VendorNoticingRoute,
+  VendorPhotosRoute: VendorPhotosRoute,
   GiftIndexRoute: GiftIndexRoute,
+  VendorIndexRoute: VendorIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
