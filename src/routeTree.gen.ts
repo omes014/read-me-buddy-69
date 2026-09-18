@@ -10,33 +10,73 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MeetRouteImport } from './routes/meet'
+import { Route as PrioritiesRouteImport } from './routes/priorities'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as PersonaSlugRouteImport } from './routes/persona.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MeetRoute = MeetRouteImport.update({
+  id: '/meet',
+  path: '/meet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrioritiesRoute = PrioritiesRouteImport.update({
+  id: '/priorities',
+  path: '/priorities',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PersonaSlugRoute = PersonaSlugRouteImport.update({
+  id: '/persona/$slug',
+  path: '/persona/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/meet': typeof MeetRoute
+  '/priorities': typeof PrioritiesRoute
+  '/search': typeof SearchRoute
+  '/persona/$slug': typeof PersonaSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/meet': typeof MeetRoute
+  '/priorities': typeof PrioritiesRoute
+  '/search': typeof SearchRoute
+  '/persona/$slug': typeof PersonaSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/meet': typeof MeetRoute
+  '/priorities': typeof PrioritiesRoute
+  '/search': typeof SearchRoute
+  '/persona/$slug': typeof PersonaSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/meet' | '/priorities' | '/search' | '/persona/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/meet' | '/priorities' | '/search' | '/persona/$slug'
+  id: '__root__' | '/' | '/meet' | '/priorities' | '/search' | '/persona/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  MeetRoute: typeof MeetRoute
+  PrioritiesRoute: typeof PrioritiesRoute
+  SearchRoute: typeof SearchRoute
+  PersonaSlugRoute: typeof PersonaSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +88,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/meet': {
+      id: '/meet'
+      path: '/meet'
+      fullPath: '/meet'
+      preLoaderRoute: typeof MeetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/priorities': {
+      id: '/priorities'
+      path: '/priorities'
+      fullPath: '/priorities'
+      preLoaderRoute: typeof PrioritiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/persona/$slug': {
+      id: '/persona/$slug'
+      path: '/persona/$slug'
+      fullPath: '/persona/$slug'
+      preLoaderRoute: typeof PersonaSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  MeetRoute: MeetRoute,
+  PrioritiesRoute: PrioritiesRoute,
+  SearchRoute: SearchRoute,
+  PersonaSlugRoute: PersonaSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
