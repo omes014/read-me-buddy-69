@@ -10,9 +10,16 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as HomeRouteImport } from './routes/home'
+import { Route as MatchesRouteImport } from './routes/matches'
 import { Route as MeetRouteImport } from './routes/meet'
+import { Route as PeopleRouteImport } from './routes/people'
 import { Route as PrioritiesRouteImport } from './routes/priorities'
 import { Route as SearchRouteImport } from './routes/search'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as GiftIndexRouteImport } from './routes/gift.index'
+import { Route as GiftProfileRouteImport } from './routes/gift.profile'
+import { Route as GiftSearchRouteImport } from './routes/gift.search'
 import { Route as PersonaSlugRouteImport } from './routes/persona.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -20,9 +27,24 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HomeRoute = HomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MatchesRoute = MatchesRouteImport.update({
+  id: '/matches',
+  path: '/matches',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MeetRoute = MeetRouteImport.update({
   id: '/meet',
   path: '/meet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PeopleRoute = PeopleRouteImport.update({
+  id: '/people',
+  path: '/people',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrioritiesRoute = PrioritiesRouteImport.update({
@@ -35,6 +57,26 @@ const SearchRoute = SearchRouteImport.update({
   path: '/search',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GiftIndexRoute = GiftIndexRouteImport.update({
+  id: '/gift/',
+  path: '/gift/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GiftProfileRoute = GiftProfileRouteImport.update({
+  id: '/gift/profile',
+  path: '/gift/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GiftSearchRoute = GiftSearchRouteImport.update({
+  id: '/gift/search',
+  path: '/gift/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PersonaSlugRoute = PersonaSlugRouteImport.update({
   id: '/persona/$slug',
   path: '/persona/$slug',
@@ -43,40 +85,105 @@ const PersonaSlugRoute = PersonaSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/home': typeof HomeRoute
+  '/matches': typeof MatchesRoute
   '/meet': typeof MeetRoute
+  '/people': typeof PeopleRoute
   '/priorities': typeof PrioritiesRoute
   '/search': typeof SearchRoute
+  '/settings': typeof SettingsRoute
+  '/gift/profile': typeof GiftProfileRoute
+  '/gift/search': typeof GiftSearchRoute
   '/persona/$slug': typeof PersonaSlugRoute
+  '/gift/': typeof GiftIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/home': typeof HomeRoute
+  '/matches': typeof MatchesRoute
   '/meet': typeof MeetRoute
+  '/people': typeof PeopleRoute
   '/priorities': typeof PrioritiesRoute
   '/search': typeof SearchRoute
+  '/settings': typeof SettingsRoute
+  '/gift/profile': typeof GiftProfileRoute
+  '/gift/search': typeof GiftSearchRoute
   '/persona/$slug': typeof PersonaSlugRoute
+  '/gift': typeof GiftIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/home': typeof HomeRoute
+  '/matches': typeof MatchesRoute
   '/meet': typeof MeetRoute
+  '/people': typeof PeopleRoute
   '/priorities': typeof PrioritiesRoute
   '/search': typeof SearchRoute
+  '/settings': typeof SettingsRoute
+  '/gift/profile': typeof GiftProfileRoute
+  '/gift/search': typeof GiftSearchRoute
   '/persona/$slug': typeof PersonaSlugRoute
+  '/gift/': typeof GiftIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/meet' | '/priorities' | '/search' | '/persona/$slug'
+  fullPaths:
+    | '/'
+    | '/home'
+    | '/matches'
+    | '/meet'
+    | '/people'
+    | '/priorities'
+    | '/search'
+    | '/settings'
+    | '/gift/profile'
+    | '/gift/search'
+    | '/persona/$slug'
+    | '/gift/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/meet' | '/priorities' | '/search' | '/persona/$slug'
-  id: '__root__' | '/' | '/meet' | '/priorities' | '/search' | '/persona/$slug'
+  to:
+    | '/'
+    | '/home'
+    | '/matches'
+    | '/meet'
+    | '/people'
+    | '/priorities'
+    | '/search'
+    | '/settings'
+    | '/gift/profile'
+    | '/gift/search'
+    | '/persona/$slug'
+    | '/gift'
+  id:
+    | '__root__'
+    | '/'
+    | '/home'
+    | '/matches'
+    | '/meet'
+    | '/people'
+    | '/priorities'
+    | '/search'
+    | '/settings'
+    | '/gift/profile'
+    | '/gift/search'
+    | '/persona/$slug'
+    | '/gift/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  HomeRoute: typeof HomeRoute
+  MatchesRoute: typeof MatchesRoute
   MeetRoute: typeof MeetRoute
+  PeopleRoute: typeof PeopleRoute
   PrioritiesRoute: typeof PrioritiesRoute
   SearchRoute: typeof SearchRoute
+  SettingsRoute: typeof SettingsRoute
+  GiftProfileRoute: typeof GiftProfileRoute
+  GiftSearchRoute: typeof GiftSearchRoute
   PersonaSlugRoute: typeof PersonaSlugRoute
+  GiftIndexRoute: typeof GiftIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -88,11 +195,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/home': {
+      id: '/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof HomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/matches': {
+      id: '/matches'
+      path: '/matches'
+      fullPath: '/matches'
+      preLoaderRoute: typeof MatchesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/meet': {
       id: '/meet'
       path: '/meet'
       fullPath: '/meet'
       preLoaderRoute: typeof MeetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/people': {
+      id: '/people'
+      path: '/people'
+      fullPath: '/people'
+      preLoaderRoute: typeof PeopleRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/priorities': {
@@ -109,6 +237,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SearchRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gift/': {
+      id: '/gift/'
+      path: '/gift'
+      fullPath: '/gift/'
+      preLoaderRoute: typeof GiftIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gift/profile': {
+      id: '/gift/profile'
+      path: '/gift/profile'
+      fullPath: '/gift/profile'
+      preLoaderRoute: typeof GiftProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gift/search': {
+      id: '/gift/search'
+      path: '/gift/search'
+      fullPath: '/gift/search'
+      preLoaderRoute: typeof GiftSearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/persona/$slug': {
       id: '/persona/$slug'
       path: '/persona/$slug'
@@ -121,10 +277,17 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  HomeRoute: HomeRoute,
+  MatchesRoute: MatchesRoute,
   MeetRoute: MeetRoute,
+  PeopleRoute: PeopleRoute,
   PrioritiesRoute: PrioritiesRoute,
   SearchRoute: SearchRoute,
+  SettingsRoute: SettingsRoute,
+  GiftProfileRoute: GiftProfileRoute,
+  GiftSearchRoute: GiftSearchRoute,
   PersonaSlugRoute: PersonaSlugRoute,
+  GiftIndexRoute: GiftIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
