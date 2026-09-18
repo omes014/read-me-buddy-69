@@ -17,7 +17,7 @@ export const Route = createFileRoute("/matches")({
       { property: "og:description", content: "Best price, best verdict, and why it suits you." },
     ],
   }),
-  component: Matches;
+  component: Matches,
 });
 
 function Matches() {
