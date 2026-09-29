@@ -9,7 +9,7 @@ type Tab = "people" | "wishlist" | "favourites";
 
 export const Route = createFileRoute("/people")({
   validateSearch: (search: Record<string, unknown>): { tab: Tab } => {
-    const tab = search.tab;
+    const tab = search["tab"];
     return {
       tab: tab === "wishlist" || tab === "favourites" ? tab : "people",
     };

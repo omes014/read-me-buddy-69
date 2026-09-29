@@ -22,8 +22,12 @@ import { Route as GiftProfileRouteImport } from './routes/gift.profile'
 import { Route as GiftSearchRouteImport } from './routes/gift.search'
 import { Route as PersonaSlugRouteImport } from './routes/persona.$slug'
 import { Route as VendorIndexRouteImport } from './routes/vendor.index'
+import { Route as VendorLiveRouteImport } from './routes/vendor.live'
 import { Route as VendorNoticingRouteImport } from './routes/vendor.noticing'
 import { Route as VendorPhotosRouteImport } from './routes/vendor.photos'
+import { Route as VendorQuestionsRouteImport } from './routes/vendor.questions'
+import { Route as VendorReviewRouteImport } from './routes/vendor.review'
+import { Route as VendorShopRouteImport } from './routes/vendor.shop'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -90,6 +94,11 @@ const VendorIndexRoute = VendorIndexRouteImport.update({
   path: '/vendor/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VendorLiveRoute = VendorLiveRouteImport.update({
+  id: '/vendor/live',
+  path: '/vendor/live',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VendorNoticingRoute = VendorNoticingRouteImport.update({
   id: '/vendor/noticing',
   path: '/vendor/noticing',
@@ -98,6 +107,21 @@ const VendorNoticingRoute = VendorNoticingRouteImport.update({
 const VendorPhotosRoute = VendorPhotosRouteImport.update({
   id: '/vendor/photos',
   path: '/vendor/photos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VendorQuestionsRoute = VendorQuestionsRouteImport.update({
+  id: '/vendor/questions',
+  path: '/vendor/questions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VendorReviewRoute = VendorReviewRouteImport.update({
+  id: '/vendor/review',
+  path: '/vendor/review',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VendorShopRoute = VendorShopRouteImport.update({
+  id: '/vendor/shop',
+  path: '/vendor/shop',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -113,8 +137,12 @@ export interface FileRoutesByFullPath {
   '/gift/profile': typeof GiftProfileRoute
   '/gift/search': typeof GiftSearchRoute
   '/persona/$slug': typeof PersonaSlugRoute
+  '/vendor/live': typeof VendorLiveRoute
   '/vendor/noticing': typeof VendorNoticingRoute
   '/vendor/photos': typeof VendorPhotosRoute
+  '/vendor/questions': typeof VendorQuestionsRoute
+  '/vendor/review': typeof VendorReviewRoute
+  '/vendor/shop': typeof VendorShopRoute
   '/gift/': typeof GiftIndexRoute
   '/vendor/': typeof VendorIndexRoute
 }
@@ -130,8 +158,12 @@ export interface FileRoutesByTo {
   '/gift/profile': typeof GiftProfileRoute
   '/gift/search': typeof GiftSearchRoute
   '/persona/$slug': typeof PersonaSlugRoute
+  '/vendor/live': typeof VendorLiveRoute
   '/vendor/noticing': typeof VendorNoticingRoute
   '/vendor/photos': typeof VendorPhotosRoute
+  '/vendor/questions': typeof VendorQuestionsRoute
+  '/vendor/review': typeof VendorReviewRoute
+  '/vendor/shop': typeof VendorShopRoute
   '/gift': typeof GiftIndexRoute
   '/vendor': typeof VendorIndexRoute
 }
@@ -148,8 +180,12 @@ export interface FileRoutesById {
   '/gift/profile': typeof GiftProfileRoute
   '/gift/search': typeof GiftSearchRoute
   '/persona/$slug': typeof PersonaSlugRoute
+  '/vendor/live': typeof VendorLiveRoute
   '/vendor/noticing': typeof VendorNoticingRoute
   '/vendor/photos': typeof VendorPhotosRoute
+  '/vendor/questions': typeof VendorQuestionsRoute
+  '/vendor/review': typeof VendorReviewRoute
+  '/vendor/shop': typeof VendorShopRoute
   '/gift/': typeof GiftIndexRoute
   '/vendor/': typeof VendorIndexRoute
 }
@@ -167,8 +203,12 @@ export interface FileRouteTypes {
     | '/gift/profile'
     | '/gift/search'
     | '/persona/$slug'
+    | '/vendor/live'
     | '/vendor/noticing'
     | '/vendor/photos'
+    | '/vendor/questions'
+    | '/vendor/review'
+    | '/vendor/shop'
     | '/gift/'
     | '/vendor/'
   fileRoutesByTo: FileRoutesByTo
@@ -184,8 +224,12 @@ export interface FileRouteTypes {
     | '/gift/profile'
     | '/gift/search'
     | '/persona/$slug'
+    | '/vendor/live'
     | '/vendor/noticing'
     | '/vendor/photos'
+    | '/vendor/questions'
+    | '/vendor/review'
+    | '/vendor/shop'
     | '/gift'
     | '/vendor'
   id:
@@ -201,8 +245,12 @@ export interface FileRouteTypes {
     | '/gift/profile'
     | '/gift/search'
     | '/persona/$slug'
+    | '/vendor/live'
     | '/vendor/noticing'
     | '/vendor/photos'
+    | '/vendor/questions'
+    | '/vendor/review'
+    | '/vendor/shop'
     | '/gift/'
     | '/vendor/'
   fileRoutesById: FileRoutesById
@@ -219,8 +267,12 @@ export interface RootRouteChildren {
   GiftProfileRoute: typeof GiftProfileRoute
   GiftSearchRoute: typeof GiftSearchRoute
   PersonaSlugRoute: typeof PersonaSlugRoute
+  VendorLiveRoute: typeof VendorLiveRoute
   VendorNoticingRoute: typeof VendorNoticingRoute
   VendorPhotosRoute: typeof VendorPhotosRoute
+  VendorQuestionsRoute: typeof VendorQuestionsRoute
+  VendorReviewRoute: typeof VendorReviewRoute
+  VendorShopRoute: typeof VendorShopRoute
   GiftIndexRoute: typeof GiftIndexRoute
   VendorIndexRoute: typeof VendorIndexRoute
 }
@@ -318,6 +370,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VendorIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/vendor/live': {
+      id: '/vendor/live'
+      path: '/vendor/live'
+      fullPath: '/vendor/live'
+      preLoaderRoute: typeof VendorLiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/vendor/noticing': {
       id: '/vendor/noticing'
       path: '/vendor/noticing'
@@ -330,6 +389,27 @@ declare module '@tanstack/react-router' {
       path: '/vendor/photos'
       fullPath: '/vendor/photos'
       preLoaderRoute: typeof VendorPhotosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vendor/questions': {
+      id: '/vendor/questions'
+      path: '/vendor/questions'
+      fullPath: '/vendor/questions'
+      preLoaderRoute: typeof VendorQuestionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vendor/review': {
+      id: '/vendor/review'
+      path: '/vendor/review'
+      fullPath: '/vendor/review'
+      preLoaderRoute: typeof VendorReviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vendor/shop': {
+      id: '/vendor/shop'
+      path: '/vendor/shop'
+      fullPath: '/vendor/shop'
+      preLoaderRoute: typeof VendorShopRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -347,8 +427,12 @@ const rootRouteChildren: RootRouteChildren = {
   GiftProfileRoute: GiftProfileRoute,
   GiftSearchRoute: GiftSearchRoute,
   PersonaSlugRoute: PersonaSlugRoute,
+  VendorLiveRoute: VendorLiveRoute,
   VendorNoticingRoute: VendorNoticingRoute,
   VendorPhotosRoute: VendorPhotosRoute,
+  VendorQuestionsRoute: VendorQuestionsRoute,
+  VendorReviewRoute: VendorReviewRoute,
+  VendorShopRoute: VendorShopRoute,
   GiftIndexRoute: GiftIndexRoute,
   VendorIndexRoute: VendorIndexRoute,
 }
