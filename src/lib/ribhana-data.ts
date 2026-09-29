@@ -189,7 +189,7 @@ export type Persona = {
   name: string;
   relation: string;
   initials: string;
-  importantDate?: string;
+  importantDate?: string | undefined;
   tags: string[];
 };
 
